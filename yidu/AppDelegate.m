@@ -40,7 +40,7 @@
     self.bookDetailNavigationController = [[UINavigationController alloc]init];
     [self.bookDetailNavigationController pushViewController:book animated:NO];
 
-    self.tabBar.viewControllers = [NSArray arrayWithObjects:self.navigationController,self.bookDetailNavigationController,party,info,nil];
+    self.tabBar.viewControllers = [NSArray arrayWithObjects:self.navigationController,self.bookDetailNavigationController,party,self.navigationController_info,nil];
     
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"C15E8264E7AF56A0693A54D3723A484F3F502642" generalDelegate:nil];
