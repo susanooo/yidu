@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NearMapController.h"
 #import "BookViewController.h"
 #import "PartyViewController.h"
 #import "InfoViewController.h"
+#import "MapViewController.h"
 #import "BMapKit.h"
 
 @interface AppDelegate : NSObject <UIApplicationDelegate,UITabBarControllerDelegate,UINavigationControllerDelegate>{

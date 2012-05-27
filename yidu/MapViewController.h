@@ -7,29 +7,28 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "mapSearchControllerViewController.h"
 #import "BMapKit.h"
 
 @interface MapViewController : UIViewController<BMKMapViewDelegate,BMKSearchDelegate>{
-    
+    mapSearchControllerViewController *searchViewController;
+    UISegmentedControl *select;
     BMKMapView* _mapView;
     BMKSearch *_search;
     NSString *key;
-    NSMutableArray *cafeResult;
+    NSMutableArray *poiResult;
     NSString *temp;
-    NSMutableArray *libResult;
-    NSMutableArray *bSResult;
-    int a;
 }
 @property(strong,nonatomic)BMKMapView* _mapView;
 @property(strong,nonatomic)BMKSearch *_search;
 @property(strong,nonatomic)NSString *key;
-@property(strong,nonatomic)NSMutableArray *cafeResult;
+@property(strong,nonatomic)UISegmentedControl *select;
 @property(strong,nonatomic)NSString *temp;
-@property(strong,nonatomic)NSMutableArray *libResult;
-@property(strong,nonatomic)NSMutableArray *bSResult;
+@property(strong,nonatomic)NSMutableArray *poiResult;
+@property(strong,nonatomic)mapSearchControllerViewController *searchViewController;
 
 -(void)poiResultCheck:(NSString *)key;
 -(BOOL)changeKeyCheck;
--(void)getLibResult;
--(void)getCafeResult;
+-(void)mapShow;
+-(void)changeKey;
 @end

@@ -19,10 +19,10 @@
 @synthesize _search;
 @synthesize _mapView;
 @synthesize key;
+@synthesize select;
 @synthesize temp;
-@synthesize cafeResult;
-@synthesize libResult;
-@synthesize bSResult;
+@synthesize poiResult;
+@synthesize searchViewController;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -30,11 +30,79 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        _search = [[BMKSearch alloc]init];
+        UIImageView *image_map = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]];
+        self.title = @"附近";
+        self.tabBarItem.image=image_map.image;
         
     }
     return self;
 }
+
+
+#pragma mark - View lifecycle
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+	// Do any additional setup after loading the view, typically from a nib.
+    searchViewController = [[mapSearchControllerViewController alloc]init];
+    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
+    _search = [[BMKSearch alloc]init];
+    self.view = _mapView;
+    _search.delegate = self;
+    _mapView.delegate=self;
+    self.key = @"图书馆";
+    temp = @"图书馆";
+    [_mapView setShowsUserLocation:YES];
+    
+    //构造布局
+    UIBarButtonItem *map =[[UIBarButtonItem alloc]initWithTitle:@"搜索" style:UIBarButtonItemStylePlain target: self action:@selector(mapShow)];
+    
+    self.navigationItem.rightBarButtonItem = map;
+    
+    self.select = [[UISegmentedControl alloc] init];
+    select.frame = CGRectMake(80, 7, 160, 30);
+    
+    [select insertSegmentWithTitle:@"图书馆" atIndex:0 animated:YES];
+    [select insertSegmentWithTitle:@"cafe" atIndex:1 animated:YES];
+    [select insertSegmentWithTitle:@"书店" atIndex:2 animated:YES];
+    select.segmentedControlStyle = UISegmentedControlStyleBar;
+    select.momentary = NO;
+    select.multipleTouchEnabled=NO;
+    select.selectedSegmentIndex = 0;
+    [select addTarget:self action:@selector(changeKey) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = select;
+
+    
+}
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    // e.g. self.myOutlet = nil;
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+	[super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated
+{
+	[super viewDidDisappear:animated];
+}
+
 
 - (void)didReceiveMemoryWarning
 {
@@ -76,6 +144,7 @@
     //[_search reverseGeocode:userLocation.location.coordinate];
 
     _mapView.showsUserLocation = NO; 
+    [self poiResultCheck:self.key];
     
 }
 
@@ -119,7 +188,7 @@
     NSLog(@"地图区域改变完成");
 
     if (self.changeKeyCheck) {
-        [self poiResultCheck:key];
+        [self poiResultCheck:self.key];
     }
     
 
@@ -222,7 +291,7 @@
 - (void)onGetPoiResult:(NSArray*)poiResultList searchType:(int)type errorCode:(int)error
 {
 	if (error == BMKErrorOk) {
-        libResult = [[NSMutableArray alloc]initWithArray:poiResultList];
+        poiResult = [[NSMutableArray alloc]initWithArray:poiResultList];
 		BMKPoiResult* result = [poiResultList objectAtIndex:0];
 		for (int i = 0; i < result.poiInfoList.count; i++) {
 			BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
@@ -231,16 +300,6 @@
 			item.title = poi.name;
 			[_mapView addAnnotation:item];
 		}
-        if (key==@"图书馆") {
-            libResult = [[NSMutableArray alloc]initWithArray:poiResultList];
-        }
-        if (key==@"cafe") {
-            cafeResult = [[NSMutableArray alloc]initWithArray:poiResultList];
-        }
-        if (key==@"书店") {
-            bSResult = [[NSMutableArray alloc]initWithArray:poiResultList];
-        }
-
         
 	}
 }
@@ -269,50 +328,6 @@
 }
 
 
-#pragma mark - View lifecycle
-
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    _mapView = [[BMKMapView alloc]initWithFrame:CGRectMake(0, 0, 320, 480)];
-    self.view = _mapView;
-    _search.delegate = self;
-    _mapView.delegate=self;
-    temp = @"图书馆";
-    
-    [_mapView setShowsUserLocation:YES];
-        sleep(10);
-    
-}
-
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
-}
-
 #pragma mark-
 #pragma mark 搜索结果返回
 
@@ -324,19 +339,18 @@
     array =[NSArray arrayWithArray:_mapView.overlays];
     [_mapView removeOverlays:array];
     
-    BOOL flag = [_search poiSearchNearBy:key center:_mapView.region.center radius:5000 pageIndex:0];
+    BOOL flag = [_search poiSearchNearBy:self.key center:_mapView.region.center radius:5000 pageIndex:0];
     if (flag) {
         NSLog(@"查找失败！！！");
     }
 }
 - (BOOL)changeKeyCheck{
 
-    if (temp == key) {
-        temp=key;
+    if (temp == self.key) {
         return FALSE;
     }
     else {
-        temp=key;
+        temp = self.key;
         return TRUE;
     }
 
@@ -347,13 +361,26 @@
     // Return YES for supported orientations
     return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
 }
-- (void)getLibResult
+- (void)changeKey
 {
-    NSLog(@"线程1结束");
+    if (self.select.selectedSegmentIndex == 0) {
+        NSLog(@"图书馆！！！");
+        self.key=@"图书馆";
+        
+    }
+    if (self.select.selectedSegmentIndex == 1) {
+        NSLog(@"cafe！！！");
+        self.key=@"cafe";
+    }
+    if (self.select.selectedSegmentIndex == 2) {
+        NSLog(@"书店！！！");
+        self.key=@"书店";
+    }
 }
-- (void)getCafeResult
+- (void)mapShow
 {
-    NSLog(@"线程2结束");
+    [self.navigationController pushViewController:searchViewController animated:YES];
+    
 }
 
 @end

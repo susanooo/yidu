@@ -78,6 +78,8 @@
 		9602CDC2156CC1C600959449 /* yidu_ver4 114.114.png in Resources */ = {isa = PBXBuildFile; fileRef = 9602CDC1156CC1C600959449 /* yidu_ver4 114.114.png */; };
 		9602CDC5156CC20600959449 /* yidu_ver5 57.57.png in Resources */ = {isa = PBXBuildFile; fileRef = 9602CDC4156CC20600959449 /* yidu_ver5 57.57.png */; };
 		96047EF2156E0FB100DFDB63 /* libbaidumapapi.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 96047EF1156E0FB100DFDB63 /* libbaidumapapi.a */; };
+		96CB4DF61570C0B700B69839 /* mapSearchControllerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 96CB4DF41570C0B700B69839 /* mapSearchControllerViewController.m */; };
+		96CB4DF71570C0B700B69839 /* mapSearchControllerViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CB4DF51570C0B700B69839 /* mapSearchControllerViewController.xib */; };
 		96F47DB2156B928D00E3C2F8 /* marker.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F47DB1156B928D00E3C2F8 /* marker.png */; };
 		96F47DB5156BA7E900E3C2F8 /* stats.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F47DB4156BA7E900E3C2F8 /* stats.png */; };
 		96F47DB7156BA7FF00E3C2F8 /* ufo.png in Resources */ = {isa = PBXBuildFile; fileRef = 96F47DB6156BA7FF00E3C2F8 /* ufo.png */; };
@@ -235,6 +237,9 @@
 		9602CDC1156CC1C600959449 /* yidu_ver4 114.114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yidu_ver4 114.114.png"; sourceTree = SOURCE_ROOT; };
 		9602CDC4156CC20600959449 /* yidu_ver5 57.57.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "yidu_ver5 57.57.png"; sourceTree = SOURCE_ROOT; };
 		96047EF1156E0FB100DFDB63 /* libbaidumapapi.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libbaidumapapi.a; sourceTree = "<group>"; };
+		96CB4DF31570C0B700B69839 /* mapSearchControllerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mapSearchControllerViewController.h; sourceTree = "<group>"; };
+		96CB4DF41570C0B700B69839 /* mapSearchControllerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = mapSearchControllerViewController.m; sourceTree = "<group>"; };
+		96CB4DF51570C0B700B69839 /* mapSearchControllerViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mapSearchControllerViewController.xib; sourceTree = "<group>"; };
 		96F47DB1156B928D00E3C2F8 /* marker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marker.png; sourceTree = "<group>"; };
 		96F47DB4156BA7E900E3C2F8 /* stats.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stats.png; sourceTree = "<group>"; };
 		96F47DB6156BA7FF00E3C2F8 /* ufo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ufo.png; sourceTree = "<group>"; };
@@ -316,6 +321,12 @@
 				147EC2CB15197C9600EE7289 /* AppDelegate.h */,
 				147EC2CC15197C9600EE7289 /* AppDelegate.m */,
 				147EC2C315197C9600EE7289 /* Supporting Files */,
+				14CC796B1519C5AC00A0AE67 /* MapViewController.h */,
+				14CC796C1519C5AC00A0AE67 /* MapViewController.mm */,
+				14CC796D1519C5AC00A0AE67 /* MapViewController.xib */,
+				96CB4DF31570C0B700B69839 /* mapSearchControllerViewController.h */,
+				96CB4DF41570C0B700B69839 /* mapSearchControllerViewController.m */,
+				96CB4DF51570C0B700B69839 /* mapSearchControllerViewController.xib */,
 				147EC2F3151983C900EE7289 /* NearMapController.h */,
 				147EC2F4151983C900EE7289 /* NearMapController.mm */,
 				147EC2F5151983C900EE7289 /* NearMapController.xib */,
@@ -325,9 +336,6 @@
 				147EC30615198CD800EE7289 /* InfoViewController.h */,
 				147EC30715198CD800EE7289 /* InfoViewController.m */,
 				147EC30815198CD800EE7289 /* InfoViewController.xib */,
-				14CC796B1519C5AC00A0AE67 /* MapViewController.h */,
-				14CC796C1519C5AC00A0AE67 /* MapViewController.mm */,
-				14CC796D1519C5AC00A0AE67 /* MapViewController.xib */,
 				14D349421557AEC700B8D275 /* aboutViewController.h */,
 				14D349431557AEC700B8D275 /* aboutViewController.m */,
 				14D349441557AEC700B8D275 /* aboutViewController.xib */,
@@ -641,6 +649,7 @@
 				6B0BA7CB156E460C00F52679 /* BookDetailsViewController.xib in Resources */,
 				6B0BA7CE156E460C00F52679 /* BookReviewsViewController.xib in Resources */,
 				6B0BA7D1156E460C00F52679 /* BookViewController.xib in Resources */,
+				96CB4DF71570C0B700B69839 /* mapSearchControllerViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,6 +715,7 @@
 				6B0BA7D8156E460C00F52679 /* NSString+UUID.m in Sources */,
 				6B0BA7D9156E460C00F52679 /* ReviewTableViewCell.m in Sources */,
 				6B0BA7DE156E478B00F52679 /* RatingDisplayView.m in Sources */,
+				96CB4DF61570C0B700B69839 /* mapSearchControllerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,8 +793,6 @@
 				INFOPLIST_FILE = "yidu/yidu-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_All_iOS_1.1.1/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphoneos\"",
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -883,8 +891,6 @@
 				INFOPLIST_FILE = "yidu/yidu-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_All_iOS_1.1.1/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphoneos\"",
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -911,8 +917,6 @@
 				INFOPLIST_FILE = "yidu/yidu-Info.plist";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_All_iOS_1.1.1/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphonesimulator\"",
-					"\"$(SRCROOT)/../../../Downloads/BaiduMapApi_Lib_iOS_1.1.1/libs/Release-iphoneos\"",
 					"\"$(SRCROOT)\"",
 				);
 				OTHER_LDFLAGS = (

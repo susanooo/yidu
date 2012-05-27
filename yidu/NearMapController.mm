@@ -10,9 +10,7 @@
 
 
 @implementation NearMapController
-@synthesize select;
 @synthesize mapViewController;
-@synthesize resultTable;
 @synthesize poiResult;
 @synthesize poiResultDic;
 @synthesize testArray;
@@ -23,20 +21,13 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        UIImageView *image_map = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"marker.png"]];
-        self.title = @"附近";
-        self.tabBarItem.image=image_map.image;
+
     }
     return self;
 }
 
 - (void)viewDidLoad
 {
-        
-    self.mapViewController = [[MapViewController alloc]init];
-    mapViewController.key = @"图书馆";
-    [self.view addSubview:mapViewController.view];
-    testArray = [[NSMutableArray alloc]init];
     
     /*
     //构造等待风火轮
@@ -63,24 +54,7 @@
     
     [self performSelector:@selector(killActivity:) withObject:_activityIndicatorView afterDelay:10.0];
     */
-    
-    UIBarButtonItem *map =[[UIBarButtonItem alloc]initWithTitle:@"地图" style:UIBarButtonItemStylePlain target: self action:@selector(mapShow)];
-
-    self.navigationItem.rightBarButtonItem = map;
-    
-    self.select = [[UISegmentedControl alloc] init];
-    select.frame = CGRectMake(80, 7, 160, 30);
-
-    [select insertSegmentWithTitle:@"图书馆" atIndex:0 animated:YES];
-    [select insertSegmentWithTitle:@"cafe" atIndex:1 animated:YES];
-    [select insertSegmentWithTitle:@"书店" atIndex:2 animated:YES];
-    select.segmentedControlStyle = UISegmentedControlStyleBar;
-    select.momentary = NO;
-    select.multipleTouchEnabled=NO;
-    select.selectedSegmentIndex = 0;
-    [select addTarget:self action:@selector(changeKey) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = select;
-    
+       
     [NSThread detachNewThreadSelector:@selector(sleepThread) toTarget:self withObject:nil];
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
@@ -102,17 +76,7 @@
 }
 
 
-- (void)mapShow
-{
-    [UIView beginAnimations:nil context:nil];//动画开始
-    
-    [UIView setAnimationDuration:0.75f];
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationTransition:UIViewAnimationTransitionFlipFromLeft forView:mapViewController.view cache:YES];
-    [UIView commitAnimations];
-    [self.view addSubview:mapViewController.view];
 
-}
 - (void)tableShow
 {
 
@@ -125,25 +89,6 @@
     [self.view.layer addAnimation:animation forKey:@"Reveal"];
     
 
-}
-- (void)changeKey
-{
-    if (self.select.selectedSegmentIndex == 0) {
-        NSLog(@"图书馆！！！");
-        mapViewController.key=@"图书馆";
-        [NSThread detachNewThreadSelector:@selector(sleepThread) toTarget:self withObject:nil];
-
-    }
-    if (self.select.selectedSegmentIndex == 1) {
-        NSLog(@"cafe！！！");
-        mapViewController.key=@"cafe";
-        [NSThread detachNewThreadSelector:@selector(sleepThread) toTarget:self withObject:nil];
-    }
-    if (self.select.selectedSegmentIndex == 2) {
-        NSLog(@"书店！！！");
-        mapViewController.key=@"书店";
-        [NSThread detachNewThreadSelector:@selector(sleepThread) toTarget:self withObject:nil];
-    }
 }
 
 #pragma mark-
@@ -180,33 +125,6 @@
     [view removeFromSuperview];
     [_activityIndicatorView stopAnimating];
 }
-- (void)getPoiValue
-{   
-    
 
-    if (@"cafe" == mapViewController.key) {
-        poiResult = mapViewController.cafeResult;
-    }
-    if (@"书店" == mapViewController.key) {
-        poiResult = mapViewController.bSResult;
-    }
-    else {
-        poiResult = mapViewController.libResult;
-    }
-
-    BMKPoiResult* result = [poiResult objectAtIndex:0];
-    for (int i= 0;i < result.poiInfoList.count; i++) {
-        BMKPoiInfo* poi = [result.poiInfoList objectAtIndex:i];
-        [testArray addObject:poi.name];
-        NSLog(@"%@",[testArray objectAtIndex:i]);
-    }
-
-    [resultTable reloadData];
-}
-- (void)sleepThread
-{
-    sleep(5);
-    [self performSelectorOnMainThread:@selector(getPoiValue) withObject:nil waitUntilDone:NO];
-}
 
 @end

@@ -22,7 +22,7 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     self.tabBar = [[UITabBarController alloc]initWithNibName:nil bundle:nil];
 
-    NearMapController *map = [[NearMapController alloc]initWithNibName:@"NearMapController" bundle:nil];
+    MapViewController *map = [[MapViewController alloc]initWithNibName:@"MapViewController" bundle:nil];
     BookViewController *book = [[BookViewController alloc]initWithNibName:@"BookViewController" bundle:nil];
     PartyViewController *party = [[PartyViewController alloc]initWithNibName:@"PartyViewController" bundle:nil];
     InfoViewController *info = [[InfoViewController alloc]initWithNibName:@"InfoViewController" bundle:nil];
@@ -38,6 +38,7 @@
     [self.navigationController_info setNavigationBarHidden:NO];
     
     self.bookDetailNavigationController = [[UINavigationController alloc]init];
+    self.bookDetailNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self.bookDetailNavigationController pushViewController:book animated:NO];
 
     self.tabBar.viewControllers = [NSArray arrayWithObjects:self.navigationController,self.bookDetailNavigationController,party,self.navigationController_info,nil];
