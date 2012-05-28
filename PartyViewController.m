@@ -21,6 +21,7 @@
         UIImageView *image_party = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"stats.png"]];
         self.title = @"活动";
         self.tabBarItem.image = image_party.image;
+        //
     }
     return self;
 }
