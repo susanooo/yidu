@@ -18,6 +18,7 @@
     UITabBarController *tabBar;
     UINavigationController *navigationController;
     UINavigationController *navigationController_info;
+    UINavigationController *eventsNavigationController;
     BMKMapManager *_mapManager;
 }
 
@@ -26,6 +27,7 @@
 @property (strong, nonatomic) UINavigationController *navigationController;
 @property (strong, nonatomic) UINavigationController *navigationController_info;
 @property (strong, nonatomic) UINavigationController *bookDetailNavigationController;
+@property (strong, nonatomic) UINavigationController *eventsNavigationController;
 
 
 @end

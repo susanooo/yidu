@@ -35,6 +35,8 @@
 		14D349461557AEC700B8D275 /* aboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D349441557AEC700B8D275 /* aboutViewController.xib */; };
 		14D3494A1557AEFB00B8D275 /* describeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 14D349481557AEFB00B8D275 /* describeViewController.m */; };
 		14D3494B1557AEFB00B8D275 /* describeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 14D349491557AEFB00B8D275 /* describeViewController.xib */; };
+		5BDEC85315831F9800037019 /* EventDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5BDEC85115831F9800037019 /* EventDetailViewController.m */; };
+		5BDEC85415831F9800037019 /* EventDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5BDEC85215831F9800037019 /* EventDetailViewController.xib */; };
 		6B0BA786156E45F300F52679 /* GDataXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BA772156E45F300F52679 /* GDataXMLNode.m */; };
 		6B0BA787156E45F300F52679 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 6B0BA775156E45F300F52679 /* MBProgressHUD.m */; };
 		6B0BA788156E45F300F52679 /* README.mdown in Resources */ = {isa = PBXBuildFile; fileRef = 6B0BA776156E45F300F52679 /* README.mdown */; };
@@ -168,6 +170,9 @@
 		14D349471557AEFB00B8D275 /* describeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = describeViewController.h; path = ../describeViewController.h; sourceTree = "<group>"; };
 		14D349481557AEFB00B8D275 /* describeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = describeViewController.m; path = ../describeViewController.m; sourceTree = "<group>"; };
 		14D349491557AEFB00B8D275 /* describeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = describeViewController.xib; path = ../describeViewController.xib; sourceTree = "<group>"; };
+		5BDEC85015831F9800037019 /* EventDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EventDetailViewController.h; path = ../EventDetailViewController.h; sourceTree = "<group>"; };
+		5BDEC85115831F9800037019 /* EventDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EventDetailViewController.m; path = ../EventDetailViewController.m; sourceTree = "<group>"; };
+		5BDEC85215831F9800037019 /* EventDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = EventDetailViewController.xib; path = ../EventDetailViewController.xib; sourceTree = "<group>"; };
 		6B0BA771156E45F300F52679 /* GDataXMLNode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GDataXMLNode.h; sourceTree = "<group>"; };
 		6B0BA772156E45F300F52679 /* GDataXMLNode.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GDataXMLNode.m; sourceTree = "<group>"; };
 		6B0BA774156E45F300F52679 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
@@ -315,6 +320,7 @@
 		147EC2C215197C9600EE7289 /* yidu */ = {
 			isa = PBXGroup;
 			children = (
+				5BDEC84E15831F3400037019 /* EventView */,
 				6B0BA76F156E45C400F52679 /* BookView */,
 				14CC79661519C4E100A0AE67 /* Resources */,
 				14CC79461519C4A800A0AE67 /* inc */,
@@ -330,9 +336,6 @@
 				147EC2F3151983C900EE7289 /* NearMapController.h */,
 				147EC2F4151983C900EE7289 /* NearMapController.mm */,
 				147EC2F5151983C900EE7289 /* NearMapController.xib */,
-				147EC30115198CC500EE7289 /* PartyViewController.h */,
-				147EC30215198CC500EE7289 /* PartyViewController.m */,
-				147EC30315198CC500EE7289 /* PartyViewController.xib */,
 				147EC30615198CD800EE7289 /* InfoViewController.h */,
 				147EC30715198CD800EE7289 /* InfoViewController.m */,
 				147EC30815198CD800EE7289 /* InfoViewController.xib */,
@@ -428,6 +431,19 @@
 				14CC79641519C4B800A0AE67 /* mapapi.bundle */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		5BDEC84E15831F3400037019 /* EventView */ = {
+			isa = PBXGroup;
+			children = (
+				5BDEC85015831F9800037019 /* EventDetailViewController.h */,
+				5BDEC85115831F9800037019 /* EventDetailViewController.m */,
+				5BDEC85215831F9800037019 /* EventDetailViewController.xib */,
+				147EC30115198CC500EE7289 /* PartyViewController.h */,
+				147EC30215198CC500EE7289 /* PartyViewController.m */,
+				147EC30315198CC500EE7289 /* PartyViewController.xib */,
+			);
+			name = EventView;
 			sourceTree = "<group>";
 		};
 		6B0BA76F156E45C400F52679 /* BookView */ = {
@@ -650,6 +666,7 @@
 				6B0BA7CE156E460C00F52679 /* BookReviewsViewController.xib in Resources */,
 				6B0BA7D1156E460C00F52679 /* BookViewController.xib in Resources */,
 				96CB4DF71570C0B700B69839 /* mapSearchControllerViewController.xib in Resources */,
+				5BDEC85415831F9800037019 /* EventDetailViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -716,6 +733,7 @@
 				6B0BA7D9156E460C00F52679 /* ReviewTableViewCell.m in Sources */,
 				6B0BA7DE156E478B00F52679 /* RatingDisplayView.m in Sources */,
 				96CB4DF61570C0B700B69839 /* mapSearchControllerViewController.m in Sources */,
+				5BDEC85315831F9800037019 /* EventDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

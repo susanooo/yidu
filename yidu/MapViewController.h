@@ -27,7 +27,6 @@
 @property(strong,nonatomic)NSMutableArray *poiResult;
 @property(strong,nonatomic)mapSearchControllerViewController *searchViewController;
 
-
 -(void)poiResultCheck:(NSString *)key;
 -(BOOL)changeKeyCheck;
 -(void)mapShow;

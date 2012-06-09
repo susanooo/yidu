@@ -15,6 +15,7 @@
 @synthesize navigationController;
 @synthesize navigationController_info;
 @synthesize bookDetailNavigationController;
+@synthesize eventsNavigationController;
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -41,7 +42,11 @@
     self.bookDetailNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
     [self.bookDetailNavigationController pushViewController:book animated:NO];
 
-    self.tabBar.viewControllers = [NSArray arrayWithObjects:self.navigationController,self.bookDetailNavigationController,party,self.navigationController_info,nil];
+    self.eventsNavigationController = [[UINavigationController alloc] init];
+    self.eventsNavigationController.navigationBar.barStyle = UIBarStyleBlackOpaque;
+    [self.eventsNavigationController pushViewController:party animated:NO];
+    
+    self.tabBar.viewControllers = [NSArray arrayWithObjects:self.navigationController,self.bookDetailNavigationController,eventsNavigationController,self.navigationController_info,nil];
     
     _mapManager = [[BMKMapManager alloc]init];
     BOOL ret = [_mapManager start:@"C15E8264E7AF56A0693A54D3723A484F3F502642" generalDelegate:nil];
