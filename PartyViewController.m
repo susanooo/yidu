@@ -21,6 +21,7 @@
 
 
 -(void)createEvent {
+   /*
     NSString *urlAddress = @"http://api.douban.com/events";
     NSURL *myURL = [NSURL URLWithString:urlAddress];
     //NSMutableURLRequest *request = [[NSMutableURLRequest alloc] init];
@@ -36,6 +37,22 @@
     NSError *error;
     NSURLResponse *response;
     NSData *urlData=[NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
+    NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
+    NSLog(data);
+    */
+    
+    NSString * xmlString = [[NSString alloc] initWithFormat:@"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<entry xmlns=\"http://www.w3.org/2005/Atom\" xmlns:db=\"http://www.douban.com/xmlns/\" xmlns:gd=\"http://schemas.google.com/g/2005\" xmlns:opensearch=\"http://a9.com/-/spec/opensearchrss/1.0/\">\n<title>Comme des Garçons 展览会 </title>\n<category scheme=\"http://www.douban.com/2007#kind\" term=\"http://www.douban.com/2007#event.exhibit\"/>\n<content>This is a Test </content></entry>"];
+    NSLog(xmlString);
+    NSURL * serviceUrl = [NSURL URLWithString:@"http://api.douban.com/events"];
+    NSMutableURLRequest * serviceRequest = [NSMutableURLRequest requestWithURL:serviceUrl];
+    [serviceRequest setValue:@"text/xml" forHTTPHeaderField:@"Content-type"];
+    [serviceRequest setHTTPMethod:@"POST"];
+    [serviceRequest setHTTPBody:[xmlString dataUsingEncoding:NSASCIIStringEncoding]];
+
+    
+    NSURLResponse * serviceResponse;
+    NSError * serviceError;
+    NSData *urlData = [NSURLConnection sendSynchronousRequest:serviceRequest returningResponse:&serviceResponse error:&serviceError];
     NSString *data=[[NSString alloc]initWithData:urlData encoding:NSUTF8StringEncoding];
     NSLog(data);
     
@@ -191,7 +208,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //retrive all the events from city "beijing"
     [self retrieveEventsOfCity:@"beijing"];
-    NSLog(@"eventArray count:%d",[_eventsArray count]);
+    //NSLog(@"eventArray count:%d",[_eventsArray count]);
     //NSLog(@"titles count:%d",[[[_eventsArray objectAtIndex:0] elementsForName:@"title"] count] );
     //NSArray *eventTitleElements = [[_eventsArray objectAtIndex:0] elementsForName:@"title"];
     //for (GDataXMLElement *eventTitleElement in eventTitleElements) {
@@ -200,6 +217,7 @@ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //}
     
     //NSLog(@"title count:%d",[[[[_eventsArray objectAtIndex:0] elementsForName:@"title"] objectAtIndex:0] count]);
+
     
     
 }
